@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Student Login</title>
+	<link rel="stylesheet" type="text/css" href="login.css">
+	<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="HandheldFriendly" content="true">
+</head>
+<body>
+	<div class="bg"></div>
+    <div class="bg bg2"></div>
+    <div class="bg bg3"></div>
+	<div class="hero">
+		<div class="form-box">
+			<div class="button-box">
+				<div id="btn"></div>
+				<button type="button" class="toogle-btn" onclick="login()">LOGIN</button>
+				<button type="button" class="toogle-btn" onclick="register()">SIGNUP</button>
+			</div>
+			<div class="icon">
+			<img src="student.png">
+		</div>
+		<form action="hello.html" class="input-group" id="login" method="post" name="form" onclick ="return validated()">
+			<input type="text" class="input-field"  id="user" placeholder="User Id" required>
+			<div id="user_error"></div>
+			<input type="Password" class="input-field" id="Password" placeholder="Enter Password" required><br>
+			<div id="pass_error"></div>
+			<input type="checkbox" class="check-box"><span>Remember Password</span>
+			<button type="submit" class="submit-btn">LOGIN</button>
+			
+		</form>
+		<form action="connect.jsp" method="POST" class="input-group" id="register" method="post" name="form1" onsubmit="return validate()">
+			<input type="text" class="input-field" name="idc" id="clg_id"  placeholder="College Id" required>
+			<div id="clg_iderror"></div>
+			<input type="Email" class="input-field" name="semail" id="email"  placeholder=" Email" required >
+			<div id="email_error"></div>
+			<input type="text" class="input-field" name="password" id="psw" placeholder="Enter Password" required>
+			<div id="psw_error"></div>
+			<input type="text" class="input-field" name="cpassword" id="psw1" placeholder="confirm Password" required>
+			<div id="psw1_error"></div>
+			<input type="number" class="input-field" name="snumber"  id="number" placeholder="mobile number" required>
+			<div id="number_error"></div>
+			<input type="Email" class="input-field" name="paemail" id="pemail" placeholder=" Parents Email" required>
+			<div id="pemail_error"></div>
+
+
+
+			<input type="checkbox" class="check-box"><span> Agree Terms and condition</span>
+			<button type="register" class="submit-btn1" >REGISTER</button>
+
+			
+		</form>
+			
+		</div>
+		
+	</div>
+	<script >
+		var x=document.getElementById("login");
+		var y=document.getElementById("register");
+		var z=document.getElementById("btn");
+		var user = document.forms['form']['user'];
+		var Password = document.forms['form']['Password'];
+		var clg_id = document.forms['form1']['clg_id'];
+		var email = document.forms['form1']['email']; 
+		var psw = document.forms['form1']['psw'];
+		var psw1 = document.forms['form1']['psw1'];
+		var number = document.forms['form1']['number'];
+		var pemail = document.forms['form1']['pemail'];
+		var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+
+
+		var user_error = document.getElementById('user_error');
+		var pass_error = document.getElementById('pass_error');
+		var clg_iderror = document.getElementById('clg_iderror');
+		var email_error = document.getElementById('email_error');
+		var psw_error = document.getElementById('psw_error');
+		var psw1_error = document.getElementById('psw1_error');
+		var number_error = document.getElementById('number_error');
+		var pemail_error = document.getElementById('pemail_error');
+		
+
+		function register(){
+			x.style.left = "-400px";
+			y.style.left = "50px";
+			z.style.left = "110px";
+		}
+		function login(){
+			x.style.left = "50px";
+			y.style.left = "450px";
+			z.style.left = "0px";
+			x.style.button="250px"
+		}
+		function validated() {
+			if (user.value.length ==null || user.value.length=="") {
+				user.style.border = "1px solid red";
+				user_error.textContent = "user id is required";
+				user.focus();
+				return false;
+			}else if (user.value.length <= 5) {
+				user.style.border = "1px solid red";
+				user_error.textContent = "**PLEASE ENTER CORRECT ID**";
+				user.focus();
+				return false;
+			}
+			 if (user.value == "deepak" && password.value == "cse123@") {
+
+				return true;
+			}else {
+				alert("wrong credentials");
+				return false;
+			}
+		
+
+		}
+		function validate() {
+			if (clg_id.value.length =="" || clg_id.value.length == null){
+				clg_id.style.border = "1px solid red";
+				clg_iderror.textContent = "**PLEASE ENTER ID**";
+				clg_id.focus();
+				return false;
+			}else if (clg_id.value.length < 5){
+				clg_id.style.border = "1px solid red";
+				clg_iderror.textContent = "**PLEASE ENTER CORRECT ID**";
+				clg_id.focus();
+				return false;
+			}else if(clg_id.value.length > 5){
+				clg_id.style.border = "1px solid red";
+				clg_iderror.textContent = "**PLEASE ENTER CORRECT ID**";
+				clg_id.focus();
+				return false;
+			}
+			if (email.value >= 25 ){
+				email.style.border = "1px solid red";
+				email_error.textContent = "**PLEASE ENTER CORRECT ID**";
+				email.focus();
+				return false;
+			}
+			if (!filter.test(email.value)) {
+				email.style.border = "1px solid red";
+				email_error.textContent = "**PLEASE ENTER VALID EMAIL**";
+				email.focus();
+				return false;
+			} if (psw.value.length != psw1.value.length){
+				psw1.style.border = "1px solid red";
+				psw1_error.textContent = "**PASSWORD ENTERED DOESNT MATCH**";
+				psw1.focus();
+				return false;
+			} if (psw.value <=5){
+				psw.style.border = "1px solid red";
+				psw_error.textContent = "**PASSWORD LENGTH MUST BE MORETHAN 5**";
+				psw.focus();
+				return false;
+			} if(psw.value != psw1.value) {
+				psw1.style.border = "1px solid red";
+				psw1_error.textContent = "**PASSWORD ENTERED DOESNT MATCH**";
+				psw1.focus();
+				return false;
+			} if(number.value.length == null || number.value.lenth ==""){
+				number.style.border = "1px solid red";
+				number_error.textContent = "**PASSWORD ENTERED DOESNT MATCH**";
+				number.focus();
+				return false;
+			}
+			if(number.value.length != 10 || number.value.lenth >10){
+				number.style.border = "1px solid red";
+				number_error.textContent = "**MUST BE 10 DIGITS**";
+				number.focus();
+				return false; 
+			}
+			if (!filter.test(pemail.value)) {
+				pemail.style.border = "1px solid red";
+				pemail_error.textContent = "**PLEASE ENTER VALID EMAIL**";
+				pemail.focus();
+				return false;
+			}
+			if(pemail.value == email.value) {
+				pemail.style.border = "1px solid red";
+				pemail_error.textContent = "**PLEASE ENTER PARENT EMAIL**";
+				pemail.focus();
+				return false;
+			}
+
+		}
+
+
+
+		
+	</script>
+
+
+</body>
+</html>
